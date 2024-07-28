@@ -1,0 +1,443 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Oct 10, 2023 at 06:23 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `gwsc`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `AdminID` int(11) NOT NULL,
+  `AdminName` varchar(30) DEFAULT NULL,
+  `Email` varchar(30) DEFAULT NULL,
+  `Password` varchar(30) DEFAULT NULL,
+  `PhoneNo` varchar(30) DEFAULT NULL,
+  `Address` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`AdminID`, `AdminName`, `Email`, `Password`, `PhoneNo`, `Address`) VALUES
+(2, 'John Carter', 'john@gmail.com', 'John123!', '7 Davids Lane, Stuckindroin, U', '07745129649'),
+(3, 'Susan ', 'susan@gmail.com', 'Susan123!', '96 New Dover Rd, Wallingford, ', '07022654921'),
+(4, 'Mary Jone', 'mary@gmail.com', 'Mary123!', '66 North Promenade, Down Ampne', '07940213367'),
+(5, 'Paul ', 'paul@gmail.com', 'Paul123!', '9 Station Rd, Quemerford, Unit', '07036391639');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking`
+--
+
+CREATE TABLE `booking` (
+  `BookingID` int(11) NOT NULL,
+  `BookingDate` date DEFAULT NULL,
+  `CustomerID` int(11) DEFAULT NULL,
+  `PitchID` int(11) DEFAULT NULL,
+  `CheckInDate` date DEFAULT NULL,
+  `Quantity` int(11) DEFAULT NULL,
+  `Subtotal` int(11) DEFAULT NULL,
+  `Tax` int(11) DEFAULT NULL,
+  `TotalPrice` int(11) DEFAULT NULL,
+  `PaymentType` varchar(40) DEFAULT NULL,
+  `PaymentInfo` varchar(60) DEFAULT NULL,
+  `ConfirmedEmail` varchar(30) DEFAULT NULL,
+  `ConfirmedPhone` varchar(30) DEFAULT NULL,
+  `Msg` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`BookingID`, `BookingDate`, `CustomerID`, `PitchID`, `CheckInDate`, `Quantity`, `Subtotal`, `Tax`, `TotalPrice`, `PaymentType`, `PaymentInfo`, `ConfirmedEmail`, `ConfirmedPhone`, `Msg`) VALUES
+(1, '2023-10-01', 1, 4, '2023-10-12', 2, 300, 15, 315, 'DigitalPay', '097820131173', 'stella@gmail.com', '097820131173', NULL),
+(2, '2023-10-01', 2, 2, '2023-10-16', 4, 748, 37, 785, 'Card', '4958737398169780   ', 'hanna12@gmail.com', ' 215-916-7120', 'Please contact me if the booking is confirmed.'),
+(3, '2023-10-01', 2, 7, '2023-11-09', 2, 440, 22, 462, 'Card', '4958 7373 9816 9780   ', 'hanna12@gmail.com', '215-916-7120', 'Please contact me if the booking is confirmed.'),
+(4, '2023-10-01', 2, 4, '2023-11-11', 1, 150, 8, 158, 'Card', '4958737398169780', 'hanna12@gmail.com', '215-916-7120', 'Please contact me if the booking is confirmed.'),
+(5, '2023-10-01', 3, 3, '2023-10-17', 1, 200, 10, 210, 'DigitalPay', '12673555280', 'jenni123@gmail.com', '12673555281', 'Thank you.'),
+(6, '2023-10-01', 3, 2, '2023-01-01', 1, 187, 9, 196, 'DigitalPay', '12673555280', 'jenni123@gmail.com', '12673555280', 'Thanks'),
+(7, '2023-10-01', 2, 4, '2023-10-01', 8, 1200, 60, 1260, 'Card', '4958737398169780', 'hanna12@gmail.com', '215-916-7120', 'Contact me via email, please.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `ContactID` int(11) NOT NULL,
+  `FirstName` varchar(40) DEFAULT NULL,
+  `Surname` varchar(40) DEFAULT NULL,
+  `ContactPhone` varchar(40) DEFAULT NULL,
+  `ContactEmail` varchar(40) DEFAULT NULL,
+  `ContactMessage` varchar(255) DEFAULT NULL,
+  `CustomerID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`ContactID`, `FirstName`, `Surname`, `ContactPhone`, `ContactEmail`, `ContactMessage`, `CustomerID`) VALUES
+(1, 'Stella', 'Jeans', '07820131173', 'stella@gmail.com', 'I want some counselling sessions for my next camping plan. Could you please contact me via email?', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `CustomerID` int(11) NOT NULL,
+  `FirstName` varchar(30) DEFAULT NULL,
+  `Surname` varchar(30) DEFAULT NULL,
+  `Username` varchar(30) DEFAULT NULL,
+  `PhoneNo` varchar(30) DEFAULT NULL,
+  `EmailAddress` varchar(30) DEFAULT NULL,
+  `Password` varchar(30) DEFAULT NULL,
+  `Address` varchar(30) DEFAULT NULL,
+  `Viewcount` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`CustomerID`, `FirstName`, `Surname`, `Username`, `PhoneNo`, `EmailAddress`, `Password`, `Address`, `Viewcount`) VALUES
+(1, 'Stella', 'Jeans', 'Stella', '07820131173', 'stella@gmail.com', 'Stella123!', ' 90 South Western Terrace, Min', 91),
+(2, 'Hanna', 'Pham', 'Hanna', '215-916-7120', 'hanna12@gmail.com', 'Hanna123!', '1885 Glen Falls Road, Saint Me', 11),
+(3, 'Jenni', 'Rose', 'Jenni', '12673555281', 'jenni123@gmail.com', 'Jenni123!', ' 10 St James Boulevard, UK', 2),
+(4, 'Robin', 'Bob', 'Bob', '1223990473', 'robin12@gmail.com', 'Robin123!', '72 Fordham Rd, Halam, United K', 1),
+(5, 'Tom', 'Robert', 'Tom', '123221234', 'tomrobert123@gmail.com', 'TomRob123!', 'United Kingdom', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pitches`
+--
+
+CREATE TABLE `pitches` (
+  `PitchID` int(11) NOT NULL,
+  `PitchName` varchar(50) DEFAULT NULL,
+  `SiteID` int(11) DEFAULT NULL,
+  `PitchTypeID` int(11) DEFAULT NULL,
+  `PitchLocation` varchar(100) DEFAULT NULL,
+  `Duration` varchar(30) DEFAULT NULL,
+  `Price` int(11) DEFAULT NULL,
+  `PitchImg1` varchar(255) DEFAULT NULL,
+  `PitchImg2` varchar(255) DEFAULT NULL,
+  `PitchImg3` varchar(255) DEFAULT NULL,
+  `Feature1` varchar(50) DEFAULT NULL,
+  `Feature2` varchar(50) DEFAULT NULL,
+  `FeatureDetails1` varchar(255) DEFAULT NULL,
+  `FeatureDetails2` varchar(255) DEFAULT NULL,
+  `FeatureImg1` varchar(50) DEFAULT NULL,
+  `FeatureImg2` varchar(50) DEFAULT NULL,
+  `PitchStatus` varchar(30) DEFAULT NULL,
+  `Capacity` int(11) DEFAULT NULL,
+  `PitchDescription` varchar(255) DEFAULT NULL,
+  `LocalAttractionName1` varchar(100) DEFAULT NULL,
+  `LocalAttractionName2` varchar(100) DEFAULT NULL,
+  `LocalAttractionDetails1` varchar(255) DEFAULT NULL,
+  `LocalAttractionDetails2` varchar(255) DEFAULT NULL,
+  `LocalAttractionImg1` varchar(255) DEFAULT NULL,
+  `LocalAttractionImg2` varchar(255) DEFAULT NULL,
+  `LocationMap` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pitches`
+--
+
+INSERT INTO `pitches` (`PitchID`, `PitchName`, `SiteID`, `PitchTypeID`, `PitchLocation`, `Duration`, `Price`, `PitchImg1`, `PitchImg2`, `PitchImg3`, `Feature1`, `Feature2`, `FeatureDetails1`, `FeatureDetails2`, `FeatureImg1`, `FeatureImg2`, `PitchStatus`, `Capacity`, `PitchDescription`, `LocalAttractionName1`, `LocalAttractionName2`, `LocalAttractionDetails1`, `LocalAttractionDetails2`, `LocalAttractionImg1`, `LocalAttractionImg2`, `LocationMap`) VALUES
+(1, 'Blue Ridge Mountains Tent Pitch', 1, 1, 'Blue Ridge Mountains, North Carolina, USA', '10 days', 189, 'fileImages/_BlueRidgePImg1.jpg', 'fileImages/_BlueRidgePImg2.jpg', 'fileImages/_BlueRidgePImg3.jpg', 'Home Tents', 'Campfire', 'Our Tents Area offers a comfortable and inviting space for campers who prefer the simplicity and charm of camping under the stars in tents.', 'Campfires are subject to weather conditions and local regulations. We may occasionally restrict campfires during periods of high fire danger for safety reasons', 'fileImages/_FacilityTent.jpg', 'fileImages/_FacilityCampfire.jpg', 'available', 15, 'Nestled amidst the breathtaking beauty of the Blue Ridge Mountains, our Tent Pitch offers an unforgettable camping experience for nature enthusiasts and adventure seekers.', 'Blue Ridge Parkway', 'Linville Falls', 'Take a leisurely drive along this iconic roadway, stopping at breathtaking overlooks and hiking trails to witness stunning vistas and capture unforgettable photos of the surrounding landscape.', 'Just a short drive from the Tent Pitch, Linville Falls is a must-visit natural wonder.', 'fileImages/_BlueRidgeLa1.jpg', 'fileImages/_BlueRidgeLa2.jpg', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6688929.190320649!2d-85.16631553034566!3d35.054771284827694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88541fc4fc381a81%3A0xad3f30f5e922ae19!2sNorth%20Carolina%2C%20USA!5e0!3m2!1sen!2smm!4v169'),
+(2, 'New Forest Glamping Site', 2, 2, 'New Forest National Park, Hampshire, UK', '10 days', 187, 'fileImages/_pitchNewForestCaravan1.jpg', 'fileImages/_pitchNewForestCaravan2.jpeg', 'fileImages/_pitchNewForestCaravan3.jpg', 'Luxury Bell Tents', 'Outdoor Fire Pit', 'Spacious and well-furnished bell tents equipped with cozy beds and all necessary amenities to ensure a comfortable stay.', 'Gather around the crackling fire pit in the evenings, perfect for roasting marshmallows and stargazing.', 'fileImages/_FacilityBellTents.jpg', 'fileImages/_FacilityOutdoorFirePit.jpg', 'available', 15, 'New Forest Glamping Site offers a unique and luxurious camping experience in the heart of the enchanting New Forest National Park. Embrace nature\'s beauty and indulge in a serene and comfortable stay surrounded by picturesque landscapes.', 'New Forest Wildlife Park', 'Exbury Gardens and Steam Railway', 'Get up close with friendly donkeys, marvel at the playful otters, and learn about endangered wildlife conservation efforts.', 'Exbury Gardens is a beautiful woodland garden renowned for its vibrant and colorful displays of rhododendrons, azaleas, and camellias. It also features a charming steam railway that takes visitors on a delightful journey through the gardens.', 'fileImages/_pitch2LA1New Forest Wildlife Park.jpg', 'fileImages/_pitch2LA3Exbury Gardens and Steam Railway.jpg', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2517.554600876625!2d-1.6338122238215966!3d50.87644495660067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487386cfa8ded667%3A0x9b56057a373c022a!2sNew%20Forest%20National%20Park!5e0!3m2!1sen!2smm!'),
+(3, 'Celtic Motorhome Pitch', 3, 3, 'St David\'s, Pembrokeshire, Wales', '10 days', 200, 'fileImages/_PitchCelticImg1.jpg', 'fileImages/_PitchCelticImg2.jpg', 'fileImages/_PitchCelticImg3.jpg', 'Electrical Hookups', 'Pet-Friendly Area', 'Enjoy the convenience of electrical hookups for your motorhome. Stay connected and power your devices without worry.', 'We understand that pets are part of the family. Our motorhome campsite features a designated pet friendly area where your furry friends can play, run, and socialize with other pets.', 'fileImages/_FacilityEHookUp.jpg', 'fileImages/_FacilityPetFriendlyArea.jpg', 'available', 15, 'Nestled along the picturesque shores of Pembrokeshire, the Pembrokeshire Seaside Campground offers an idyllic escape for nature lovers, adventurers, and families seeking an unforgettable coastal experience.', 'Pembrokeshire Coast National Park', 'Pembroke Castle', 'Explore the breathtaking natural beauty of the Pembrokeshire Coast National Park, boasting stunning coastal landscapes, sandy beaches, and rugged cliffs. Enjoy hiking trails, birdwatching, and spectacular views of the sea.', 'Immerse yourself in history by visiting Pembroke Castle, a medieval fortress steeped in stories. Discover its impressive architecture, hidden passageways, and beautiful grounds. Learn about its rich past, from Norman origins to Tudor connections.', 'fileImages/_PitchLA1Pembroke1.jpg', 'fileImages/_PitchLAPembroke2.jpg', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2460.432328607659!2d-5.222972723756669!3d51.9260673800329!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4868e00cdb6a79d9%3A0xd25fbb5159d3cfc5!2sCeltic%20Camping%20%26%20Bunkhouse%20Accommodation!'),
+(4, 'North Carolina Sliding Rock', 1, 1, 'North Carolina, USA', '4 days', 150, 'fileImages/_PitchSlidingRock1.jpg', 'fileImages/_PitchSlidingRock2.jpg', 'fileImages/_PitchSlidingRock3.jpg', 'Camping snacks', 'Swimming Suit', 'The camping snack bundle includes fruits, skewers, desserts and juices which are limited to particular pitches.', 'Long-legged swimming suits are provided for both men and women. There are various sizes and designs which the customers can choose up to their desire.', 'fileImages/_FeatureCampingSnacks.jpg', 'fileImages/_FeatureSwimmingSuit.jpg', 'available', 15, 'One of the most popular and well-known natural waterslides in the United States. Visitors usually come to enjoy the thrill of sliding down the 60-foot gentle slope into a refreshing pool of mountain spring water.', 'Looking Glass Falls', 'Brevard', 'Just a short drive from Sliding Rock, Looking Glass Falls is a stunning, 60-foot waterfall that cascades gracefully over a rock face', 'Brevard, a charming town near Sliding Rock, offers a range of attractions, including art galleries, shops, and restaurants.', 'fileImages/_LALookingGlassFall.jpg', 'fileImages/_LABrevard2.jpg', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13023.109045816556!2d-82.79753414652858!3d35.31151562336637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8859a2523def43a9%3A0x4c4544ce9e602395!2sSliding%20Rock!5e0!3m2!1sen!2smm!4v1693759862193!'),
+(5, 'Bellevue Motorhome Pitch', 4, 3, 'North Walsham Road, Ridlington, Norfolk', '10 days', 210, 'fileImages/_pitch5Bellevue.jpg', 'fileImages/_Pitch5Bellevue2.jpg', 'fileImages/_Pitch5Bellevue3.jpg', 'Electrical Hookups', 'Wi-Fi', 'Enjoy the convenience of electrical hookups for your motorhome. Stay connected and power your devices without worry.\r\n\r\n', 'It allows devices such as smartphones, laptops, tablets, and smart home devices to connect to the internet without the constraints of wired connections', 'fileImages/_FacilityEHookUp.jpg', 'fileImages/_facilityWifi.jpg', 'available', 15, 'From sandy shores and boating on The Broads to historic houses and dainty tearooms, Bellevue Quiet Site is in prime position for getting your chill mode on with the Norfolk coast one mile away, Norwich 20 minutes’ drive away and The Broads 25 minutes’ dri', 'Bellevue Botanical Garden', 'Bellevue Downtown Park', 'The Bellevue Botanical Garden is 53 acres of cultivated gardens, restored woodlands, and natural wetlands. The living collections showcase plants that thrive in the Pacific Northwest.', 'Bellevue Downtown Park is a 21-acre oasis of green in the heart of Bellevue. It includes an inspiration playground, parking lots, water park, public wi-fi and many other breath-taking features.', 'fileImages/_LA2Bellevue-P5.jpg', 'fileImages/_LABellevueDowntowPark-P5.jpg', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d619334.8595574322!2d0.29014110783012154!3d52.67303924530643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d0a98a6c1ed5df%3A0x3579c8f16a8c121f!2sNorfolk%2C%20UK!5e0!3m2!1sen!2smm!4v1694234947486'),
+(6, 'Flamingo Tent Campground', 5, 1, 'Everglades National Park in Florida, USA', '10 days', 220, 'fileImages/_P6Flamingo1.jpg', 'fileImages/_P6Flamingo2.JPG', 'fileImages/_P6Flamingo3.jpg', 'Toilets', 'Picnic tables', 'These facilities are designed for comfort and cleanliness, making camping trips more enjoyable and environmentally responsible.', 'Picnic tables provide a convenient and comfortable space for people to sit, eat, and socialize while enjoying the great outdoors.', 'fileImages/_P6FToilet.jpg', 'fileImages/_P6FPicnicTable.jpg', 'available', 10, 'The campground provides access to a unique and diverse ecosystem, including mangrove forests, coastal areas, and the waters of Florida Bay. A popular place for travel enthusiasts who are willing to explore the Everglades\' rich wildlife.', 'Anhinga Trail', 'Eco Boat Tours', 'Anhinga Trail is a popular boardwalk trail that offers fantastic wildlife viewing opportunities. Visitors can see a variety of bird species, alligators, turtles, and other wildlife in their natural habitat.', 'These tours take you deep into the park\'s waterways, providing a chance to witness the park\'s unique landscapes and wildlife, including manatees, dolphins, and numerous bird species.', 'fileImages/_P6LA1AnhingaTrail.jpg', 'fileImages/_P6LA2AnhingaTrail.jpg', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d461527.1723884598!2d-81.2733033341471!3d25.348482188739943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d0a8307a6c05db%3A0xfe03e56762f3197!2sEverglades%20National%20Park!5e0!3m2!1sen!2smm!4v16'),
+(7, 'Long Pine Key Caravan Campground', 5, 2, 'Everglades National Park in Florida, USA', '4 days', 220, 'fileImages/_P7LongPine1.jpg', 'fileImages/_P7LongPine2.jpeg', 'fileImages/_P7LongPine3.jpg', 'Rechargeable Drinking Water', 'Campfires', 'It ensures campers stay hydrated and can use water for cooking, cleaning, and other camping needs while enjoying the great outdoors.', 'Campfires are subject to weather conditions and local regulations. We may occasionally restrict campfires during periods of high fire danger for safety reasons.', 'fileImages/_P7FacilityRechargeableWater.jpg', 'fileImages/_FacilityCampfire.jpg', 'available', 10, 'This spacious and well-maintained campground is located seven miles from the Everglades National Park entrance. The park is open seasonally from November to May, and sites are available on a first-come first-serve basis only. ', 'Mahogany Hammock Trail', 'Royal Palm Visitor Center', 'The Mahogany Hammock Trail is a boardwalk trail that takes you through a dense mahogany forest, one of the unique habitats found in the park. It is an excellent place for birdwatching.', 'The Royal Palm Visitor Center is an essential starting point for many visitors to the Everglades. It features informative exhibits about the park\'s ecosystems, wildlife, and history.', 'fileImages/_P7LA1MahoganyHammockTrail.jpg', 'fileImages/_P7LA2RoyalPalmVisitorCentre.jpg', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3604.192230037191!2d-80.65901152502576!3d25.398375223523583!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9fd22aa97530f%3A0xd4db7c2e53c41b95!2sLong%20Pine%20Key%20Campground!5e0!3m2!1sen!2smm!');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pitchtypes`
+--
+
+CREATE TABLE `pitchtypes` (
+  `PitchTypeID` int(11) NOT NULL,
+  `PitchTypeName` varchar(100) DEFAULT NULL,
+  `Description` varchar(255) DEFAULT NULL,
+  `PitchTypeImg` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pitchtypes`
+--
+
+INSERT INTO `pitchtypes` (`PitchTypeID`, `PitchTypeName`, `Description`, `PitchTypeImg`) VALUES
+(1, 'Tent Pitch', 'Experience nature like never before with our cozy and convenient tent pitches. Nestled in the breathtaking Blue Ridge Mountains of North Carolina, our tent pitches offer a serene escape from the hustle and bustle of everyday life.', 'fileImages/_pitchTypeTent.jpg'),
+(2, 'Touring Caravan Pitch', 'Experience the joy of the open road and the freedom of traveling with your touring caravan. Our spacious and well-equipped touring caravan pitch offers a perfect spot to park your caravan and unwind.', 'fileImages/_pitchTypeTouringCaravan.jpg'),
+(3, 'Motorhome Pitch', 'Embark on a thrilling journey with your motorhome and explore the natural environments. Our motorhome pitch is designed to accommodate various motorhome sizes and offers ample space for relaxation.', 'fileImages/_pitchTypeMotorHomePitch.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `ReviewID` int(11) NOT NULL,
+  `Username` varchar(30) DEFAULT NULL,
+  `Date` varchar(30) DEFAULT NULL,
+  `Rating` int(11) DEFAULT NULL,
+  `Feedback` text DEFAULT NULL,
+  `CustomerID` int(11) DEFAULT NULL,
+  `SiteID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`ReviewID`, `Username`, `Date`, `Rating`, `Feedback`, `CustomerID`, `SiteID`) VALUES
+(1, 'Stella', '2023-09-18', 5, 'The site is pleasing and breathtaking. Could spend happily there on my holidays. Highly Recommend. ', 1, 3),
+(2, 'Stella', '2023-09-19', 4, 'Splendid Experiences with fantastic facilities and services. Really recommend.', 1, 5),
+(3, 'Hanna', '2023-09-18', 5, 'Got refreshing moments and great experiences on my holidays. The site is very organized and clean.', 2, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rssfeed`
+--
+
+CREATE TABLE `rssfeed` (
+  `RSSfeedID` int(11) NOT NULL,
+  `Title` varchar(30) DEFAULT NULL,
+  `Description` text DEFAULT NULL,
+  `Url` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rssfeed`
+--
+
+INSERT INTO `rssfeed` (`RSSfeedID`, `Title`, `Description`, `Url`) VALUES
+(1, 'Home Page', 'Home Page of GWSC can also be called as the landing page of the whole website. A navigation bar containing the pages is set at the top of the page. It includes welcome greetings as well as a brief introduction to our services together with relevant images. Visitors can also search the available Pitches, each together with details. Pitch types and detailed services are also displayed. The organization location, providing facilities, campsites, and a visitor YouTube video are also shared. A section for subscription and each visitor view count are also included. Moreover, two web services, such as google translation and google map, are also added. Finally, a footer with copy right information and social media links, is included.', 'http://localhost:8080/GWSC/HomePage.php'),
+(2, 'Information Page', 'The Information Page includes a guideline for choosing Pitch and booking Pitch. Also, brief information of each Pitch, Site, Facility which are included in each Pitch, and each Local attraction are displayed responsively in each section. A simple and minimalistic navigation bar and a footer with copy right information, social links are included for the easy navigation for the visitors.', 'http://localhost:8080/GWSC/Information.php?'),
+(3, 'Available Pitches Page', 'In Available Pitches Page, there is a display of all available pitches together with each relevant information of pitch types and availability. Furthermore, available pitches and its types can be search via the search box provided in the midst of the web page. In this, a visitor can search a particular pitch only with its keyword. The page will show no pitch availability if there is no pitch found.', 'http://localhost:8080/GWSC/PitchTypeAvailability.php'),
+(4, 'Local Attractions Page', 'In Local Attractions Page, relevant local attraction places near the pitch are displayed according to each campsite. This page provides the details of the local attractions that are available near the site such as tourist attractions or walks. The details and images of each local attraction are also displayed. Their associated pitch is also linked to each local attraction.', 'http://localhost:8080/GWSC/LocalAttractions.php'),
+(5, 'Features Page', 'In Features Page, there is a listing of features that are available on the site – e.g., leisure facilities such as entertainment – or amenities on site such as car parking, showers, internet access, etc. as well as nearby amenities and rules. The features and facilities are displayed according to each campsite. Each available pitch for the particular feature are also linked.', 'http://localhost:8080/GWSC/Features.php'),
+(6, 'Reviews Page', 'The Reviews Page provides copies of reviews that visitors have posted about the different sites. Each review displays the associate site, site name, customer name, review date, rating, and review message. Moreover, a form, that allows the customers to contribute their reviews and ratings, is also provided.', 'http://localhost:8080/GWSC/Reviews.php'),
+(7, 'Contact Page', 'The Contact Page includes a contact form where customers can send messages through the website. Besides, contact information such as address, email, phone and active social media are also provided. However, a customer needs to log in the account first before being able to send messages via the contact form. Finally, links to Privacy Policy and Terms & Conditions are also included.', 'http://localhost:8080/GWSC/Contact.php');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sites`
+--
+
+CREATE TABLE `sites` (
+  `SiteID` int(11) NOT NULL,
+  `SiteName` varchar(120) DEFAULT NULL,
+  `Location` varchar(200) DEFAULT NULL,
+  `Description` varchar(255) DEFAULT NULL,
+  `SiteImg1` varchar(255) DEFAULT NULL,
+  `SiteImg2` varchar(255) DEFAULT NULL,
+  `Reviews` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sites`
+--
+
+INSERT INTO `sites` (`SiteID`, `SiteName`, `Location`, `Description`, `SiteImg1`, `SiteImg2`, `Reviews`) VALUES
+(1, 'Carolina Site (USA)', 'North Carolina, USA', 'Discover the wonders of Carolina, USA, where nature\'s beauty and adventure await. Our campsite is nestled amidst the majestic Blue Ridge Mountains, offering breathtaking views and a serene escape from the everyday.', 'fileImages/_northCarolinaSite1.jpg', 'fileImages/_northCarolinaSite2.jpg', '4'),
+(2, 'New Forest Glamping Site (UK)', 'New Forest National Park, Hampshire, England', 'Immerse yourself in the enchanting woodlands of New Forest National Park. This glamping site offers luxurious camping experiences with comfortable accommodations.', 'fileImages/_siteNewForestGlamping1.jpg', 'fileImages/_siteNewForestGlamping2.jpg', '4'),
+(3, 'Pembrokeshire Seaside Campground (UK)', 'Pembrokeshire, Wales, England', 'Enjoy a coastal retreat at this Pembrokeshire campsite. Explore the rugged coastline, sandy beaches, and ancient castles.', 'fileImages/_sitePembrokeshire1.jpg', 'fileImages/_sitePembrokeshire2.jpg', '4'),
+(4, 'Norfolk Broads Nature Campsite (UK)', 'Norfolk Broads, Norfolk, England', 'Embrace the tranquility of the Norfolk Broads, a unique network of rivers and wetlands. This campsite offers a peaceful escape with opportunities for boat trips, and observing wildlife.', 'fileImages/_siteNorfolkBroad1.jpg', 'fileImages/_siteNorfolkBroad2.jpg', '4'),
+(5, 'Everglades National Park Campsite (US)', 'Florida, US', 'Experience the vast wilderness of the Everglades, the largest subtropical wilderness in the United States.', 'fileImages/_siteEverglades1.jpg', 'fileImages/_siteEverglades2.jpg', '5'),
+(6, 'Nanji Hangang Park', 'South Korea', 'Nanji Hangang Park on the Han River is the largest, with the capacity to accommodate up to 2,500 people in a total of 165 camping pitches.', 'fileImages/_Site-Nanji Hangang Park1.jpeg', 'fileImages/_Site-Nanji Hangang Park2.jpg', '4');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`AdminID`);
+
+--
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`BookingID`),
+  ADD KEY `CustomerID` (`CustomerID`),
+  ADD KEY `PitchID` (`PitchID`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`ContactID`),
+  ADD KEY `CustomerID` (`CustomerID`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`CustomerID`);
+
+--
+-- Indexes for table `pitches`
+--
+ALTER TABLE `pitches`
+  ADD PRIMARY KEY (`PitchID`),
+  ADD KEY `SiteID` (`SiteID`),
+  ADD KEY `PitchTypeID` (`PitchTypeID`);
+
+--
+-- Indexes for table `pitchtypes`
+--
+ALTER TABLE `pitchtypes`
+  ADD PRIMARY KEY (`PitchTypeID`);
+
+--
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`ReviewID`),
+  ADD KEY `CustomerID` (`CustomerID`),
+  ADD KEY `SiteID` (`SiteID`);
+
+--
+-- Indexes for table `rssfeed`
+--
+ALTER TABLE `rssfeed`
+  ADD PRIMARY KEY (`RSSfeedID`);
+
+--
+-- Indexes for table `sites`
+--
+ALTER TABLE `sites`
+  ADD PRIMARY KEY (`SiteID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `AdminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `BookingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `ContactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `pitches`
+--
+ALTER TABLE `pitches`
+  MODIFY `PitchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `pitchtypes`
+--
+ALTER TABLE `pitchtypes`
+  MODIFY `PitchTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `ReviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `rssfeed`
+--
+ALTER TABLE `rssfeed`
+  MODIFY `RSSfeedID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `sites`
+--
+ALTER TABLE `sites`
+  MODIFY `SiteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `booking`
+--
+ALTER TABLE `booking`
+  ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`),
+  ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`PitchID`) REFERENCES `pitches` (`PitchID`);
+
+--
+-- Constraints for table `contact`
+--
+ALTER TABLE `contact`
+  ADD CONSTRAINT `contact_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`);
+
+--
+-- Constraints for table `pitches`
+--
+ALTER TABLE `pitches`
+  ADD CONSTRAINT `pitches_ibfk_1` FOREIGN KEY (`SiteID`) REFERENCES `sites` (`SiteID`),
+  ADD CONSTRAINT `pitches_ibfk_2` FOREIGN KEY (`PitchTypeID`) REFERENCES `pitchtypes` (`PitchTypeID`);
+
+--
+-- Constraints for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`),
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`SiteID`) REFERENCES `sites` (`SiteID`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
